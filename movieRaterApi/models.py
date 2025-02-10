@@ -32,7 +32,7 @@ class Movie(models.Model):
     director = models.CharField(max_length=32, blank=True)
     year_of_release = models.DateTimeField(blank=True, null=True)
     genre = models.CharField(max_length=2, choices=GENRES)
-    is_classified_adults_only = models.BooleanField(default=False)
+    is_classified_adult_view = models.BooleanField(default=False)
 
 class Rating(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
