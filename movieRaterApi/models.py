@@ -34,6 +34,20 @@ class Movie(models.Model):
     genre = models.CharField(max_length=2, choices=GENRES)
     is_classified_adult_view = models.BooleanField(default=False)
 
+    def num_of_ratings(self):
+        ratings = Rating.objects.filter(movie=self)
+        return len(ratings)
+
+    def avg_ratings(self):
+        ratings = Rating.objects.filter(movie=self)
+        cum_ratings = 0
+        for rating in ratings:
+            cum_ratings += rating.rating
+        return 0 if cum_ratings < 1 else cum_ratings / len(ratings)
+
+    def __str__(self):
+        return self.title
+
 class Rating(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
