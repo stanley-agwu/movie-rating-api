@@ -55,4 +55,3 @@ class Rating(models.Model):
 
     class Meta:
         unique_together = (('user', 'movie'),)
-        #index_together = (('user', 'movie'),)
