@@ -51,3 +51,11 @@ class RatingViewSet(viewsets.ModelViewSet):
     serializer_class = RatingSerializer
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
+
+    def create(self, *args, **kwargs):
+        response = {"message": "rating creation not allowed via this route"}
+        return Response(response, status=status.HTTP_403_FORBIDDEN)
+
+    def update(self, *args, **kwargs):
+        response = {"message": "rating update not allowed via this route"}
+        return Response(response, status=status.HTTP_403_FORBIDDEN)
